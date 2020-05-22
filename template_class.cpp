@@ -3,37 +3,38 @@
 
 #include <iostream>
 using namespace std;
+template<class T>
 class Stack
 {
     private:
-        int* stk; // puntero para array en heap memory
-        int top;
-        int size;
+        T* stk; // puntero para array en heap memory
+        T top;
+        T size;
     public:
-        Stack(int sz) 
+        Stack(T sz) 
         {
             size = sz;
             top = -1;
-            stk = new int[size]; 
+            stk = new T[size]; 
         }
-        void push(int x);
-        int pop(); 
+        void push(T x);
+        T pop(); 
         void displayStk();
 };
-
-void Stack::push(int x) 
+// Métodos implementados fuera de la clase, entonces: 
+template<class T>
+void Stack<T>::push(T x) 
 {
-
     if (top == size - 1)
         cout << "Stack is full" << endl;
     else
         top++;
         stk[top]=x; // el array es el puntero del heap! 
 }
-
-int Stack::pop()
+template<class T>
+T Stack<T>::pop()
 {
-    int x = 0;
+    T x = 0;
     if (top == -1)
         cout << "Stack is empty" << endl;
     else
@@ -43,20 +44,23 @@ int Stack::pop()
     }
     return x;
 }
-void Stack::displayStk()
+
+template<class T>
+void Stack<T>::displayStk()
 {
-    for (int i = 0; i < 5; i++)
+    for (T i = 0; i < 5; i++)
     cout<<stk[i]<<endl;
 }
 // básicamente, un array en heap meter u quitar valores con un puntero al array. YA ESTA
 int main()
 {
-    Stack s(5);
+    // Metemos el tipo int en la template
+    Stack<int> s(5);
     for( int i=0; i<6;i++)
         s.push(i);
     s.displayStk();
 }
-
+ 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
 // Depurar programa: F5 o menú Depurar > Iniciar depuración
 
