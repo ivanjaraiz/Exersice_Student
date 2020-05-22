@@ -2,10 +2,59 @@
 //
 
 #include <iostream>
+using namespace std;
+class Stack
+{
+    private:
+        int* stk; // puntero para array en heap memory
+        int top;
+        int size;
+    public:
+        Stack(int sz) 
+        {
+            size = sz;
+            top = -1;
+            stk = new int[size]; 
+        }
+        void push(int x);
+        int pop(); 
+        void displayStk();
+};
 
+void Stack::push(int x) 
+{
+
+    if (top == size - 1)
+        cout << "Stack is full" << endl;
+    else
+        top++;
+        stk[top]=x; // el array es el puntero del heap! 
+}
+
+int Stack::pop()
+{
+    int x = 0;
+    if (top == -1)
+        cout << "Stack is empty" << endl;
+    else
+    {
+        x=stk[top];
+        top--;
+    }
+    return x;
+}
+void Stack::displayStk()
+{
+    for (int i = 0; i < 5; i++)
+    cout<<stk[i]<<endl;
+}
+// básicamente, un array en heap meter u quitar valores con un puntero al array. YA ESTA
 int main()
 {
-    std::cout << "Hello World!\n";
+    Stack s(5);
+    for( int i=0; i<6;i++)
+        s.push(i);
+    s.displayStk();
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
